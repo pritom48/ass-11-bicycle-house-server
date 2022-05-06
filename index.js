@@ -33,9 +33,18 @@ async function run() {
             res.send(cycle)
         })
 
+        //post
         app.post('/cycle', async (req, res) => {
             const newCycle = req.body;
             const result = await cycleCollection.insertOne(newCycle)
+            res.send(result)
+        })
+
+        //delete
+        app.delete('/cycle/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) }
+            const result = await cycleCollection.deleteOne(query)
             res.send(result)
         })
 
