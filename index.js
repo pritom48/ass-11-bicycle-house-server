@@ -48,6 +48,15 @@ async function run() {
             res.send(result)
         })
 
+        app.get('/myitem', async (req, res) => {
+            const email = req.query.email;
+            console.log(email)
+            const query = { email: email }
+            const cursor = cycleCollection.find(query)
+            const result = await cursor.toArray()
+            res.send(result)
+        })
+
     }
     finally {
 
